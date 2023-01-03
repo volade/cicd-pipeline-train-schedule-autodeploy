@@ -8,8 +8,8 @@ pipeline {
         stage('Build') {
             steps {
                  script {
-                   BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                     
+                   //BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
+                   BRANCH_NAME = env.BRANCH_NAME 
                 }
                 println "Branch name: $BRANCH_NAME"
                 //mvn clean package
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'origin/master'
+                branch "$BRANCH_NAME"
             }
             steps {
                 script {
