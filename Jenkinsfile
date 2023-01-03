@@ -7,6 +7,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                 script {
+                   BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
+                }
                 //mvn clean package
                 sh '''#!/usr/bin/bash
                     echo \'Running build automation\'
@@ -17,9 +20,6 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            script {
-                    BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                }
             when {
                 branch "${BRANCH_NAME}"
             }
