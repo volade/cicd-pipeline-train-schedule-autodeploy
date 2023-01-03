@@ -17,11 +17,9 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            steps {
-                script {
+            script {
                     BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
                 }
-            }
             when {
                 branch "${BRANCH_NAME}"
             }
