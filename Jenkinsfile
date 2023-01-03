@@ -6,8 +6,8 @@ pipeline {
     }
     stages {
         stage('Build') {
-            def branch_name = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
             steps {
+                def branch_name = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
                 //mvn clean package
                 sh '''#!/usr/bin/bash
                     echo \'Running build automation\'
