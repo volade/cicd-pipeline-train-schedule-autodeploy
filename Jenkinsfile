@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                script {
                 #!/usr/bin/bash
                 echo 'Running build automation'
                 pwd
@@ -14,6 +15,7 @@ pipeline {
                 mvn clean package
                 //sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                }
             }
         }
         stage('Build Docker Image') {
