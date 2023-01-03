@@ -31,6 +31,7 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
+            echo "Branch name: ${branch}"
             when {
                 branch 'master'
             }
