@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
+                sh 'pwd'
                 sh '#!/usr/bin/bash source /etc/profile && mvn clean package'
                 //sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
