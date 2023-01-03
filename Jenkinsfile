@@ -7,11 +7,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                 def getGitBranchName() {
+                        return scm.branches[0].name }
                  script {
                    //BRANCH_NAME = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                   //BRANCH_NAME = env.BRANCH_NAME 
-                     def getGitBranchName() {
-                        return scm.branches[0].name }
+                   //BRANCH_NAME = env.BRANCH_NAME
                      BRANCH_NAME = getGitBranchName()
                 }
                 println "Branch name: $BRANCH_NAME"
