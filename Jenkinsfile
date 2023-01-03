@@ -6,6 +6,7 @@ pipeline {
     }
     stages {
         stage('Build') {
+            def branch_name = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
             steps {
                 //mvn clean package
                 sh '''#!/usr/bin/bash
@@ -14,7 +15,6 @@ pipeline {
                     source /etc/profile 
                     ./gradlew build --no-daemon'''
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-             def branch_name = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
             }
         }
         stage('Build Docker Image') {
