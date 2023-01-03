@@ -13,6 +13,7 @@ pipeline {
                     pwd
                     source /etc/profile 
                     ./gradlew build --no-daemon'''
+                sh 'echo \'Current branch: ${branch}''
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
