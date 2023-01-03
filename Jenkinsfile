@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch $branch_name
+                branch $BRANCH_NAME
             }
             steps {
                 script {
