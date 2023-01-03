@@ -14,12 +14,12 @@ pipeline {
                     source /etc/profile 
                     ./gradlew build --no-daemon'''
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-                git 'checkout master'
+             def branch_name = sh(script: "git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
             }
         }
         stage('Build Docker Image') {
             when {
-                branch 'master'
+                branch $branch_name
             }
             steps {
                 script {
