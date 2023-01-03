@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                "$BRANCH_NAME" == 'master'
+                "$BRANCH_NAME" 'master'
             }
             steps {
                 script {
