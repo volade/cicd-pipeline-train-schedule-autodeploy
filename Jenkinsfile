@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch == "$BRANCH_NAME"
+                "$BRANCH_NAME" == 'master'
             }
             steps {
                 script {
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             when {
-                branch == 'master'
+                branch 'master'
             }
             steps {
                 script {
