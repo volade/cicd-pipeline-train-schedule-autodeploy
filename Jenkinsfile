@@ -13,11 +13,11 @@ pipeline {
                     pwd
                     source /etc/profile 
                     ./gradlew build --no-daemon'''
-                echo '"Current branch: ${branch}"'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
         stage('Build Docker Image') {
+            echo "Branch name: ${branch}"
             when {
                 branch 'master'
             }
@@ -31,7 +31,6 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            echo "Branch name: ${branch}"
             when {
                 branch 'master'
             }
