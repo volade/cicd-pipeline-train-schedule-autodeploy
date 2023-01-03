@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 pipeline {
     agent any
     environment {
@@ -9,10 +7,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                #!/usr/bin/bash
                 echo 'Running build automation'
-                sh 'pwd'
-                sh 'source /etc/profile' 
-                sh 'mvn clean package'
+                pwd
+                source /etc/profile
+                mvn clean package
                 //sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
