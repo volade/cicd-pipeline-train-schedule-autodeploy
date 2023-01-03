@@ -13,7 +13,6 @@ pipeline {
                     pwd
                     source /etc/profile 
                     ./gradlew build --no-daemon'''
-                echo "Branch name: ${BRANCH_NAME}"
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
                 git 'checkout master'
             }
