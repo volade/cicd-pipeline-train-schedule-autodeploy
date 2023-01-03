@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 pipeline {
     agent any
     environment {
@@ -9,7 +11,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh 'pwd'
-                sh '\#\!/usr/bin/bash source /etc/profile' 
+                sh 'source /etc/profile' 
                 sh 'mvn clean package'
                 //sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
